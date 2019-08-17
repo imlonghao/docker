@@ -4,6 +4,7 @@ push:
   branches:
     - master
   paths:
+    - .github/workflows/speedtest-cli.yml
     - speedtest-cli/Dockerfile
 
 jobs:
