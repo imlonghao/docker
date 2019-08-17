@@ -20,9 +20,9 @@ jobs:
           args: build -t imlonghao/speedtest-cli:latest speedtest-cli/
       - name: Login in Dockerhub
         uses: actions/docker/login@master
-        secrets:
-          - ${{ secrets.DOCKER_USERNAME }}
-          - ${{ secrets.DOCKER_PASSWORD }}
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push the Docker image
         uses: actions/docker/cli@master
         with:
