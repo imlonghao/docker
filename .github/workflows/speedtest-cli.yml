@@ -1,0 +1,25 @@
+name: imlonghao/speedtest-cli:latest
+
+push:
+  branches:
+    - master
+  paths:
+    - speedtest-cli/Dockerfile
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Build the Docker image
+        uses: actions/docker/cli@master
+        args: build -t imlonghao/speedtest-cli:latest speedtest-cli/
+      - name: Login in Dockerhub
+        uses: actions/docker/login@master
+        secrets:
+          - ${{ secrets.DOCKER_USERNAME }}
+          - ${{ secrets.DOCKER_PASSWORD }}
+      - name: Push the Docker image
+        uses: actions/docker/cli@master
+        args: push imlonghao/speedtest-cli:latest
