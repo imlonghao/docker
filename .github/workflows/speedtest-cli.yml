@@ -16,7 +16,8 @@ jobs:
         uses: actions/checkout@v1
       - name: Build the Docker image
         uses: actions/docker/cli@master
-        args: build -t imlonghao/speedtest-cli:latest speedtest-cli/
+        with:
+          args: build -t imlonghao/speedtest-cli:latest speedtest-cli/
       - name: Login in Dockerhub
         uses: actions/docker/login@master
         secrets:
@@ -24,4 +25,5 @@ jobs:
           - ${{ secrets.DOCKER_PASSWORD }}
       - name: Push the Docker image
         uses: actions/docker/cli@master
-        args: push imlonghao/speedtest-cli:latest
+        with:
+          args: push imlonghao/speedtest-cli:latest
