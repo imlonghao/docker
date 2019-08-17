@@ -1,0 +1,29 @@
+name: imlonghao/speedtest-cli:arm32v7
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/speedtest-cli-arm32v7.yml
+      - speedtest-cli/Dockerfile.arm32v7
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Build the Docker image
+        uses: actions/docker/cli@master
+        with:
+          args: build -t $GITHUB_WORKFLOW -f Dockerfile.arm32v7 speedtest-cli/
+      - name: Login in Dockerhub
+        uses: actions/docker/login@master
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Push the Docker image
+        uses: actions/docker/cli@master
+        with:
+          args: push $GITHUB_WORKFLOW
