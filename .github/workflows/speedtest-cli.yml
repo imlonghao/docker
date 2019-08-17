@@ -17,7 +17,7 @@ jobs:
       - name: Build the Docker image
         uses: actions/docker/cli@master
         with:
-          args: build -t imlonghao/speedtest-cli:latest speedtest-cli/
+          args: build -t $GITHUB_WORKFLOW speedtest-cli/
       - name: Login in Dockerhub
         uses: actions/docker/login@master
         env:
@@ -26,4 +26,4 @@ jobs:
       - name: Push the Docker image
         uses: actions/docker/cli@master
         with:
-          args: push imlonghao/speedtest-cli:latest
+          args: push $GITHUB_WORKFLOW
