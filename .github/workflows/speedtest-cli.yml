@@ -1,11 +1,12 @@
 name: imlonghao/speedtest-cli:latest
 
-push:
-  branches:
-    - master
-  paths:
-    - .github/workflows/speedtest-cli.yml
-    - speedtest-cli/Dockerfile
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/speedtest-cli.yml
+      - speedtest-cli/Dockerfile
 
 jobs:
   build:
