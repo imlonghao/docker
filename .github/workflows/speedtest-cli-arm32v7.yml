@@ -17,7 +17,7 @@ jobs:
       - name: Build the Docker image
         uses: actions/docker/cli@master
         with:
-          args: build -t $GITHUB_WORKFLOW -f Dockerfile.arm32v7 speedtest-cli/
+          args: build -t $GITHUB_WORKFLOW -f speedtest-cli/Dockerfile.arm32v7 speedtest-cli/
       - name: Login in Dockerhub
         uses: actions/docker/login@master
         env:
