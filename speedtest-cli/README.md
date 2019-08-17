@@ -4,7 +4,15 @@
 
 ## Usage
 
-    docker run --rm imlonghao/speedtest-cli
+```
+docker run --rm imlonghao/speedtest-cli
+```
+
+For ARM user, please use `imlonghao/speedtest-cli:arm32v7` instead.
+
+```
+docker run --rm imlonghao/speedtest-cli:arm32v7
+```
 
 ## Source
 
