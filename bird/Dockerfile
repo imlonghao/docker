@@ -12,6 +12,7 @@ FROM alpine:latest
 COPY --from=builder /builder/bird /bird
 COPY --from=builder /builder/birdc /birdc
 COPY --from=builder /builder/birdcl /birdcl
+COPY --from=builder /builder/doc/bird.conf.example2 /etc/bird.conf
 RUN apk --no-cache add ncurses-dev readline-dev
 ENTRYPOINT [ "/bird" ]
 CMD ["-f"]
