@@ -23,6 +23,7 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_REGISTRY_URL: docker.pkg.github.com
       - name: Push the Docker image
         uses: actions/docker/cli@master
         with:
