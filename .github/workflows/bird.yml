@@ -14,30 +14,30 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Build the Docker image
-        uses: actions/docker/cli@master
-        with:
-          args: build -t $GITHUB_WORKFLOW bird/
       - name: Login in Dockerhub
         uses: actions/docker/login@master
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_REGISTRY_URL: docker.pkg.github.com
-      - name: Push the Docker image
-        uses: actions/docker/cli@master
-        with:
-          args: push $GITHUB_WORKFLOW
-      - name: Retag for Github Packages
-        uses: actions/docker/cli@master
-        with:
-          args: tag $GITHUB_WORKFLOW docker.pkg.github.com/imlonghao/docker/bird:latest
       - name: Login in Github Packages
         uses: actions/docker/login@master
         env:
           DOCKER_USERNAME: ${{ secrets.GH_DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.GH_DOCKER_PASSWORD }}
+          DOCKER_REGISTRY_URL: docker.pkg.github.com
+      - name: Build the Docker image
+        uses: actions/docker/cli@master
+        with:
+          args: build -t $GITHUB_WORKFLOW bird/
+      - name: Retag for Github Packages
+        uses: actions/docker/cli@master
+        with:
+          args: tag $GITHUB_WORKFLOW docker.pkg.github.com/imlonghao/docker/bird:latest
       - name: Push the Docker image
+        uses: actions/docker/cli@master
+        with:
+          args: push $GITHUB_WORKFLOW
+      - name: Push the Docker image to Github Packages
         uses: actions/docker/cli@master
         with:
           args: push docker.pkg.github.com/imlonghao/docker/bird:latest
