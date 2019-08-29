@@ -27,3 +27,16 @@ jobs:
         uses: actions/docker/cli@master
         with:
           args: push $GITHUB_WORKFLOW
+      - name: Retag for Github Packages
+        uses: actions/docker/cli@master
+        with:
+          args: tag $GITHUB_WORKFLOW docker.pkg.github.com/imlonghao/docker/bird:latest
+      - name: Login in Github Packages
+        uses: actions/docker/login@master
+        env:
+          DOCKER_USERNAME: ${{ secrets.GH_DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.GH_DOCKER_PASSWORD }}
+      - name: Push the Docker image
+        uses: actions/docker/cli@master
+        with:
+          args: push docker.pkg.github.com/imlonghao/docker/bird:latest
