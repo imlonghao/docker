@@ -21,4 +21,4 @@ jobs:
           name: $GITHUB_WORKFLOW
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          workdir: client
+          workdir: zerotier-one
