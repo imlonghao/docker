@@ -25,6 +25,4 @@ then
     mknod /dev/net/tun c 10 200
 fi
 
-/usr/sbin/tincd -n x
-
-tail -f /dev/null
+/usr/sbin/tincd -n x -D
