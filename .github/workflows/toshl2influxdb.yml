@@ -1,0 +1,24 @@
+name: imlonghao/toshl2influxdb:latest
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/toshl2influxdb.yml
+      - toshl2influxdb/Dockerfile
+      - toshl2influxdb/main.py
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.3
+        with:
+          name: imlonghao/toshl2influxdb:latest
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          workdir: toshl2influxdb
