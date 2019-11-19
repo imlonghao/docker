@@ -22,7 +22,7 @@ def fetch_toshl():
 
 
 def write_point(money):
-    client = InfluxDBClient(DBHOST, DBPORT, DBUSER, DBPASS, DBNAME)
+    client = InfluxDBClient(DBHOST, DBPORT, DBUSER, DBPASS, DBNAME, True)
     json_body = [
         {
             "measurement": "toshl",
