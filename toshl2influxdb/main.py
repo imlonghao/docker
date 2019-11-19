@@ -12,6 +12,7 @@ DBPORT = int(os.getenv("DBPORT", "0"))
 DBUSER = os.getenv("DBUSER")
 DBPASS = os.getenv("DBPASS")
 DBNAME = os.getenv("DBNAME")
+DBSSL = os.getenv("DBSSL") == "True"
 
 
 def fetch_toshl():
@@ -22,7 +23,7 @@ def fetch_toshl():
 
 
 def write_point(money):
-    client = InfluxDBClient(DBHOST, DBPORT, DBUSER, DBPASS, DBNAME, True)
+    client = InfluxDBClient(DBHOST, DBPORT, DBUSER, DBPASS, DBNAME, DBSSL)
     json_body = [
         {
             "measurement": "toshl",
