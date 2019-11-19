@@ -2,6 +2,7 @@
 
 import os
 import time
+import random
 import requests
 from datetime import datetime
 from influxdb import InfluxDBClient
@@ -45,4 +46,4 @@ if __name__ == "__main__":
         money = fetch_toshl()
         print(datetime.now(), money)
         write_point(money)
-        time.sleep(1800)
+        time.sleep(60 * random.randint(1, 60))
