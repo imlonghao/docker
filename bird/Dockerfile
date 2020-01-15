@@ -1,10 +1,11 @@
 FROM alpine:latest AS builder
+ARG VERSION="2.0.7"
 LABEL maintainer="imlonghao"
 WORKDIR /builder
 RUN apk add g++ flex-dev bison linux-headers ncurses-dev readline-dev make wget
-RUN wget ftp://bird.network.cz/pub/bird/bird-2.0.5.tar.gz && \
-    tar zxf bird-2.0.5.tar.gz && \
-    mv bird-2.0.5/* . && \
+RUN wget ftp://bird.network.cz/pub/bird/bird-${VERSION}.tar.gz && \
+    tar zxf bird-${VERSION}.tar.gz && \
+    mv bird-${VERSION}/* . && \
     ./configure --sysconfdir=/etc --localstatedir=/var && \
     make
 
