@@ -20,7 +20,7 @@ def fetch_toshl():
     j = requests.get("https://api.toshl.com/accounts", headers={
         "Authorization": f"Bearer {TOKEN}"
     }).json()
-    return sum([x['balance'] for x in j])
+    return sum([x['balance'] / x['currency']['rate'] for x in j])
 
 
 def write_point(money):
