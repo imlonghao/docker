@@ -1,0 +1,23 @@
+name: imlonghao/openvpn:latest
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/openvpn.yml
+      - openvpn/Dockerfile
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.3
+        with:
+          name: imlonghao/openvpn:latest
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          workdir: openvpn
