@@ -1,5 +1,5 @@
 FROM python:alpine as base
-RUN apk update && apk add --no-cache ffmpeg curl
+RUN apk update && apk add --no-cache ffmpeg curl jq
 
 FROM base as builder
 RUN apk add --no-cache --virtual .build-deps gcc musl-dev

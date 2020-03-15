@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/ash
 
 if [ -z $ROOM ]; then
-    echo "Usage: $0 room_id"
+    echo "Usage: ROOM=123456 $0"
     exit 1
 fi
 
