@@ -1,0 +1,24 @@
+name: imlonghao/rclone-syncer:latest
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/rclone-syncer.yml
+      - rclone-syncer/Dockerfile
+      - rclone-syncer/entrypoint.sh
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.3
+        with:
+          name: imlonghao/rclone-syncer:latest
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          workdir: rclone-syncer
